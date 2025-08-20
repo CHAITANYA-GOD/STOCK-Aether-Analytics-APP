@@ -65,8 +65,8 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone <your_repository_url>
-cd <your_repository_name>
+git clone <(https://github.com/CHAITANYA-GOD/STOCK-Aether-Analytics-APP)>
+cd <STOCK-Aether-Analytics-APP>
 ```
 
 ### 2. Create and Activate Virtual Environment
