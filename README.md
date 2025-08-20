@@ -65,7 +65,7 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone <(https://github.com/CHAITANYA-GOD/STOCK-Aether-Analytics-APP)>
+git clone <[https://github.com/CHAITANYA-GOD/STOCK-Aether-Analytics-APP]>
 cd <STOCK-Aether-Analytics-APP>
 ```
 
