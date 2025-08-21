@@ -322,201 +322,25 @@ def display_welcome_screen():
     )'''
 
 
+
+
 import streamlit as st
 import pandas as pd
 from datetime import datetime
 from modules import processing
 import config
 import plotly.express as px
+import os
 
 # 1. Add this line to set the browser tab title
 st.set_page_config(page_title="Aether Analytics")
 
-def apply_css():
-    st.markdown("""
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto+Mono:wght@300;400;500;600&display=swap');
-            
-            /* --- Background Image & Global Styles --- */
-            [data-testid="stAppViewContainer"] {
-                background-image: url("https://images.unsplash.com/photo-1620712948740-d9d10e52109e?q=80&w=2670&auto=format&fit=crop");
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-            }
-            [data-testid="stAppViewContainer"] > .main {
-                background-color: rgba(0, 0, 0, 0.7);
-                border-radius: 10px;
-                padding: 2rem;
-            }
-            body {
-                font-family: 'Roboto Mono', monospace;
-                color: #00ff41; /* Cyberpunk green */
-            }
-            .stApp {
-                color: #00ff41;
-            }
-            
-            /* --- Main Header & Title --- */
-            .main-header {
-                font-family: 'Orbitron', sans-serif;
-                font-size: 3.5rem;
-                font-weight: 700;
-                background: linear-gradient(45deg, #00ff41, #ff00c8); /* Cyberpunk gradient */
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                background-clip: text;
-                text-align: center;
-                margin-bottom: 1rem;
-                text-shadow: 0 0 10px #00ff41, 0 0 20px #ff00c8;
-            }
-            .subtitle {
-                text-align: center;
-                font-size: 1.3rem;
-                color: #00aaff; /* Neon blue */
-                margin-bottom: 3rem;
-                font-weight: 400;
-                text-shadow: 0 0 5px #00aaff;
-            }
-
-            /* --- Sidebar Styling with Animation --- */
-            section[data-testid="stSidebar"] {
-                background: rgba(10, 25, 41, 0.9) !important;
-                border-right: 2px solid #00aaff !important;
-                color: #00ff41 !important;
-                box-shadow: 5px 0 15px rgba(0, 255, 65, 0.3) !important;
-                animation: neon-pulse-sidebar 5s infinite ease-in-out;
-            }
-            @keyframes neon-pulse-sidebar {
-                0% { box-shadow: 5px 0 15px rgba(0, 255, 65, 0.3); }
-                50% { box-shadow: 5px 0 25px rgba(0, 255, 65, 0.6); }
-                100% { box-shadow: 5px 0 15px rgba(0, 255, 65, 0.3); }
-            }
-            /* Corrected: This rule targets a specific Streamlit element by ID, which can be unstable. */
-            /* Removed the animation to be safer */
-            /* The color is set by .stButton > button below. */
-            /* .st-emotion-cache-121p688 {
-                background: linear-gradient(to right, #00ff41, #ff00c8) !important;
-                border-radius: 5px !important;
-                animation: button-glow 1.5s infinite alternate;
-            } */
-            
-            /* --- Buttons --- */
-            .stButton > button {
-                background: linear-gradient(45deg, #00ff41, #ff00c8); /* Cyberpunk gradient */
-                color: #1f1f1f; /* Dark text for contrast */
-                border: 2px solid #00aaff;
-                padding: 0.75rem 1.5rem;
-                border-radius: 8px;
-                font-weight: 700;
-                font-size: 1rem;
-                transition: all 0.3s ease;
-                width: 100%;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                box-shadow: 0 0 10px #ff00c8, 0 0 20px #00ff41;
-            }
-            .stButton > button:hover {
-                background: linear-gradient(45deg, #ff00c8, #00ff41);
-                transform: translateY(-3px);
-                box-shadow: 0 0 15px #ff00c8, 0 0 30px #00ff41;
-            }
-            
-            /* --- Other UI Elements --- */
-            .warning-card {
-                background: rgba(255, 165, 0, 0.1);
-                padding: 1.5rem;
-                border-radius: 8px;
-                border: 1px solid #ff00c8;
-                margin-top: 2rem;
-                border-left: 4px solid #ff00c8;
-            }
-            .api-status {
-                padding: 1rem;
-                border-radius: 8px;
-                margin: 1rem 0;
-            }
-            .api-working {
-                background: rgba(0, 255, 65, 0.2);
-                color: #00ff41;
-                border: 1px solid #00ff41;
-                text-shadow: 0 0 5px #00ff41;
-            }
-            .api-failed {
-                background: rgba(255, 0, 0, 0.2);
-                color: #ff00c8;
-                border: 1px solid #ff00c8;
-                text-shadow: 0 0 5px #ff00c8;
-            }
-            .api-badge {
-                background: linear-gradient(90deg, #00aaff 0%, #ff00c8 100%);
-                color: white;
-                padding: 8px 18px;
-                border-radius: 25px;
-                font-size: 15px;
-                font-weight: 600;
-                display: inline-block;
-                box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-                animation: pulse 2s infinite;
-            }
-            .stMarkdown h3, .stMarkdown h4 {
-                color: #00ff41;
-                text-shadow: 0 0 5px #00ff41;
-            }
-            .stInfo {
-                background-color: rgba(0, 170, 255, 0.1) !important;
-                border-left: 5px solid #00aaff !important;
-                color: #00aaff !important;
-            }
-            .stSuccess {
-                background-color: rgba(0, 255, 65, 0.1) !important;
-                border-left: 5px solid #00ff41 !important;
-                color: #00ff41 !important;
-            }
-            .stWarning {
-                background-color: rgba(255, 165, 0, 0.1) !important;
-                border-left: 5px solid #ffaa00 !important;
-                color: #ffaa00 !important;
-            }
-            .stError {
-                background-color: rgba(255, 0, 0, 0.1) !important;
-                border-left: 5px solid #ff00c8 !important;
-                color: #ff00c8 !important;
-            }
-            .stSlider > div > div > div {
-                background: #00ff41;
-            }
-            .stSlider > div > div > div > div {
-                background: #ff00c8;
-            }
-            .stPlotlyChart {
-                box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
-                border-radius: 10px;
-                padding: 10px;
-            }
-            
-            /* Corrected: Removed visibility: hidden to allow the sidebar toggle to appear */
-            /* Instead, we set a specific color for the header */
-            [data-testid="stHeader"] {
-                background-color: transparent;
-            }
-            #MainMenu, footer {
-                visibility: hidden;
-            }
-            
-            /* --- Animations --- */
-            @keyframes pulse {
-                0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.6); }
-                70% { box-shadow: 0 0 0 12px rgba(0, 255, 65, 0); }
-                100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); }
-            }
-            @keyframes button-glow {
-                0% { box-shadow: 0 0 10px #00ff41, 0 0 20px #ff00c8; }
-                100% { box-shadow: 0 0 15px #00ff41, 0 0 30px #ff00c8; }
-            }
-
-        </style>
-    """, unsafe_allow_html=True)
+def apply_css_from_file(css_file):
+    if os.path.exists(css_file):
+        with open(css_file) as f:
+            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+    else:
+        st.warning(f"CSS file not found: {css_file}")
 
 def display_header():
     # 3. Added the lightning bolt emoji

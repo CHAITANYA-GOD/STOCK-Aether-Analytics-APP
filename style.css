@@ -1,0 +1,109 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+/* --- General Theme --- */
+.stApp {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* --- Headers and Titles --- */
+h1, h2, h3, h4, .stTitle, .stHeader, .stSubheader {
+    font-family: 'Orbitron', sans-serif;
+    color: #00f0ff; /* Neon Cyan */
+    text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+/* --- Buttons and Widgets --- */
+.stButton>button {
+    background-color: #0d1117;
+    color: #00f0ff;
+    border: 2px solid #00f0ff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px #00f0ff;
+    transition: all 0.2s ease-in-out;
+}
+.stButton>button:hover {
+    background-color: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+.stButton>button:active {
+    background-color: rgba(0, 240, 255, 0.2);
+    border-color: #ff00ff;
+    color: #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+.stTextInput>div>div>input {
+    background-color: #161b22;
+    color: #ffffff;
+    border: 1px solid #30363d;
+    border-radius: 5px;
+}
+.stTextInput>div>div>input:focus {
+    border-color: #00f0ff;
+    box-shadow: 0 0 5px #00f0ff;
+}
+
+/* --- API Status Badges --- */
+.api-status {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    color: #0d1117;
+    margin-top: 10px;
+    font-family: 'Orbitron', sans-serif;
+}
+.api-working {
+    background-color: #00ff00; /* Neon Green */
+    box-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+}
+.api-failed {
+    background-color: #ff0000; /* Neon Red */
+    box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000;
+}
+
+/* --- Cards and Containers --- */
+.stTabs [data-testid="stDecoration"] {
+    background-color: #21262d; /* Slightly lighter dark color for tabs */
+}
+.stTabs [data-testid="stDecoration"]>div {
+    border-bottom: 2px solid #ff00ff;
+}
+.stTabs [aria-selected="true"] {
+    background-color: #ff00ff;
+    color: #0d1117;
+    font-weight: bold;
+    text-shadow: none;
+    border-radius: 5px 5px 0 0;
+}
+
+/* --- Metric Cards --- */
+[data-testid="stMetricValue"] {
+    font-size: 2rem !important;
+    color: #00f0ff;
+    font-family: 'Orbitron', sans-serif;
+}
+[data-testid="stMetricDelta"] {
+    color: #00ff00; /* Default green for delta */
+}
+[data-testid="stMetricDelta"] > svg {
+    fill: #00ff00;
+}
+[data-testid="stMetricDelta"][data-testid="stMetricDelta"] {
+    color: #ff0000;
+}
+[data-testid="stMetricDelta"][data-testid="stMetricDelta"] > svg {
+    fill: #ff0000;
+}
+
+/* --- Misc styling --- */
+.stMarkdown p {
+    color: #c9d1d9;
+}
+.st-emotion-cache-1vbkxwb {
+    font-family: 'Roboto Mono', monospace;
+}
