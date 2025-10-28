@@ -157,6 +157,17 @@ def get_stock_info(ticker):
     'SBIN': {'name': 'State Bank of India', 'sector': 'Financial Services', 'industry': 'Banking', 'currency': 'INR'},
     'ITC': {'name': 'ITC Limited', 'sector': 'Consumer Defensive', 'industry': 'Tobacco & FMCG', 'currency': 'INR'},
     'KOTAKBANK': {'name': 'Kotak Mahindra Bank Limited', 'sector': 'Financial Services', 'industry': 'Banking', 'currency': 'INR'},
+    'BAJFINANCE': {'name': 'Bajaj Finance Limited', 'sector': 'Financial Services', 'industry': 'NBFC', 'currency': 'INR'},
+    'HCLTECH': {'name': 'HCL Technologies Limited', 'sector': 'Technology', 'industry': 'IT Services', 'currency': 'INR'},
+    'AXISBANK': {'name': 'Axis Bank Limited', 'sector': 'Financial Services', 'industry': 'Banking', 'currency': 'INR'},
+    'ASIANPAINT': {'name': 'Asian Paints Limited', 'sector': 'Basic Materials', 'industry': 'Chemicals/Paints', 'currency': 'INR'},
+    'WIPRO': {'name': 'Wipro Limited', 'sector': 'Technology', 'industry': 'IT Services', 'currency': 'INR'},
+    'SUNPHARMA': {'name': 'Sun Pharmaceutical Ind.', 'sector': 'Healthcare', 'industry': 'Pharmaceuticals', 'currency': 'INR'},
+    'TITAN': {'name': 'Titan Company Limited', 'sector': 'Consumer Cyclical', 'industry': 'Jewellery/Watches', 'currency': 'INR'},
+    'NESTLEIND': {'name': 'Nestle India Limited', 'sector': 'Consumer Defensive', 'industry': 'Food Products', 'currency': 'INR'},
+    'MARUTI': {'name': 'Maruti Suzuki India Ltd.', 'sector': 'Consumer Cyclical', 'industry': 'Automotive', 'currency': 'INR'},
+    'GRASIM': {'name': 'Grasim Industries Limited', 'sector': 'Basic Materials', 'industry': 'Cement/Chemicals', 'currency': 'INR'},
+        # END: Add 10 New Indian Stock Info Here
     }
     
     base_ticker = ticker.split('.')[0].upper()

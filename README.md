@@ -124,9 +124,16 @@ It will open in your default browser.
 │   ├── __init__.py
 │   ├── processing.py
 │   └── ui.py
+│   └── data_fetcher.py
+│   └── model.py
+│   └── charting.py
 ├── data/
 │   └── sample_data.csv
+│   └── yfinance
+│   └── Alpha Vintage
 └── requirements.txt
+└── README.md
+└── style.css
 ```
 
 ---

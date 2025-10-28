@@ -37,6 +37,16 @@ RELIABLE_TICKERS = {
         "TATASTEEL.NSE": "Tata Steel",
         "KOTAKBANK.NSE": "Kotak Mahindra Bank",
         "BHARTIARTL.NSE": "Bharti Airtel",
-        "HINDUNILVR.NSE": "Hindustan Unilever"
+        "HINDUNILVR.NSE": "Hindustan Unilever",
+        "BAJFINANCE.NSE": "Bajaj Finance Limited", 
+        "HCLTECH.NSE": "HCL Technologies Limited", 
+        "AXISBANK.NSE": "Axis Bank Limited",      # 3
+        "ASIANPAINT.NSE": "Asian Paints Limited", # 4
+        "WIPRO.NSE": "Wipro Limited",            # 5
+        "SUNPHARMA.NSE": "Sun Pharmaceutical Ind.",# 6
+        "TITAN.NSE": "Titan Company Limited",    # 7
+        "NESTLEIND.NSE": "Nestle India Limited", # 8
+        "MARUTI.NSE": "Maruti Suzuki India Ltd.", # 9
+        "GRASIM.NSE": "Grasim Industries Limited" # 10
     }
 }
