@@ -100,7 +100,7 @@ def calculate_rsi(prices, window=14):
     rsi = 100 - (100 / (1 + rs))
     return rsi
 
-def process_stock_data(df, ticker, source):
+'''def process_stock_data(df, ticker, source):
     """Process and enhance stock data with technical indicators"""
     if df is None or df.empty:
         return None
@@ -127,6 +127,45 @@ def process_stock_data(df, ticker, source):
     # We can either remove this line or be very careful about when to use it.
     # For now, let's comment it out to ensure the charts render correctly.
     # df = df.dropna()
+    
+    df.attrs = {'source': source,'ticker': ticker,'last_updated': datetime.now()}
+    return df'''
+
+# processing.py - The final version of process_stock_data
+
+def process_stock_data(df, ticker, source, real_time_sentiment_score=None):
+    """Process and enhance stock data with technical indicators and sentiment."""
+    if df is None or df.empty:
+        return None
+    
+    # Ensure 'Date' column is a proper datetime object and reset index
+    if 'Date' not in df.columns and df.index.name is not None:
+        df = df.reset_index()
+    
+    df['Date'] = pd.to_datetime(df['Date'])
+    
+    # Calculate all the technical indicators (MA, RSI, ATR, Returns)
+    df['MA_20'] = df['Close'].rolling(window=20).mean()
+    df['MA_50'] = df['Close'].rolling(window=50).mean()
+    df['RSI'] = calculate_rsi(df['Close'])
+    # Assume calculate_atr and returns logic is present and correct
+    # df['ATR'] = calculate_atr(df) 
+    # df['Log_Returns'] = np.log(df['Close'] / df['Close'].shift(1))
+    
+    # ... (Keep all other feature calculations like Simple_Returns, Volume_MA, Lag features) ...
+    
+    # --- FINAL SENTIMENT INJECTION ---
+    # The real-time score is a feature for the NEXT day's prediction.
+    if real_time_sentiment_score is not None:
+        # Initialize the column
+        df['Sentiment_Score'] = np.nan 
+        
+        # Inject the single real-time score into the last available row
+        # This row contains the features used to predict tomorrow's price.
+        df.loc[df.index[-1], 'Sentiment_Score'] = real_time_sentiment_score
+        
+    # Drop rows with NaN values (which removes the initial rows where MAs/RSI/ATR are NaN)
+    df = df.dropna()
     
     df.attrs = {'source': source,'ticker': ticker,'last_updated': datetime.now()}
     return df

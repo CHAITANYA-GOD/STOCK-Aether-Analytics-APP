@@ -123,6 +123,7 @@ if __name__ == "__main__":
 import streamlit as st
 import pandas as pd
 import numpy as np
+from modules import sentiment_fetcher
 from modules import data_fetcher, processing, model, charting, ui
 import warnings
 warnings.filterwarnings('ignore')
@@ -174,6 +175,20 @@ def main():
                 st.error("❌ Unable to fetch real data. Using sample data.")
                 df = data_fetcher.create_sample_data(ticker, period)
                 used_source = "sample_data"
+                # --- NEW STEP 1: Fetch Real-Time Sentiment ---
+
+        sentiment_score = 0.0 # Initialize fallback
+        st.subheader("📰 Real-Time Sentiment Analysis")
+        with st.spinner(f"🌐 Fetching and analyzing news for {ticker}..."):
+            try:
+                # Call the function in modules/sentiment_fetcher.py
+                sentiment_score = sentiment_fetcher.fetch_and_analyze_sentiment(ticker) 
+            except Exception as e:
+                st.warning(f"Sentiment fetch failed: {e}. Using neutral score.")
+                sentiment_score = 0.0
+
+        sentiment_status = "Positive" if sentiment_score > 0.05 else ("Negative" if sentiment_score < -0.05 else "Neutral")
+        st.info(f"📰 Current Market Sentiment Polarity for {ticker}: **{sentiment_score:.3f}** ({sentiment_status})")
 
         # Process the data and get info
         df = processing.process_stock_data(df, ticker, used_source)

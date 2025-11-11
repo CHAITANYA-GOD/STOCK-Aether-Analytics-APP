@@ -47,6 +47,7 @@ RELIABLE_TICKERS = {
         "TITAN.NSE": "Titan Company Limited",    # 7
         "NESTLEIND.NSE": "Nestle India Limited", # 8
         "MARUTI.NSE": "Maruti Suzuki India Ltd.", # 9
-        "GRASIM.NSE": "Grasim Industries Limited" # 10
+        "GRASIM.NSE": "Grasim Industries Limited", # 10
+        "ADANIPORTS.NSE": "Adani Ports and Special Economic Zone"
     }
 }
