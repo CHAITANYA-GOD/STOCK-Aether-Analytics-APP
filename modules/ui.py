@@ -333,7 +333,7 @@ import plotly.express as px
 import os
 
 # 1. Add this line to set the browser tab title
-st.set_page_config(page_title="Aether Analytics")
+st.set_page_config(page_title="Trade Vision")
 
 def apply_css_from_file(css_file):
     if os.path.exists(css_file):
@@ -344,7 +344,7 @@ def apply_css_from_file(css_file):
 
 def display_header():
     # 3. Added the lightning bolt emoji
-    st.markdown('<h1 class="main-header">⚡ Aether Analytics</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">⚡ Trade Vision</h1>', unsafe_allow_html=True)
     st.markdown(
     """
     <p style='text-align: center;font-size: 20px;font-weight: 500;background: -webkit-linear-gradient(45deg, #00aaff, #ff00c8);-webkit-background-clip: text;-webkit-text-fill-color: transparent;margin-top: -10px;margin-bottom: 20px; text-shadow: 0 0 5px #00aaff;'>
@@ -590,19 +590,21 @@ def display_welcome_screen():
         st.markdown("""
             ### ✨ Premium Features:
             - 🔄 **Multi-API Integration**: Seamless data fetching from Alpha Vantage & yfinance
+            - 📰 **Real-Time Sentiment**: AI-driven analysis of current news polarity
             - 🤖 **Advanced AI Models**: Machine learning-powered predictions
             - 📊 **Comprehensive Analysis**: Technical indicators & market insights
             - 🎨 **Premium Interface**: Beautiful, responsive cyberpunk theme
             - 📈 **Real-time Charts**: Interactive Plotly visualizations
             - 🔍 **Performance Metrics**: Detailed model evaluation & statistics
             ### 🌍 Global Market Coverage:
-            **🇺🇸 US Stocks:**
+            **US Stocks:**
             - Apple (AAPL), Microsoft (MSFT), Alphabet/Google (GOOGL)
             - Amazon (AMZN), Tesla (TSLA), NVIDIA (NVDA)
             - Meta (META), Netflix (NFLX)
             - JPMorgan (JPM), Visa (V)
             - BlackRock (BLK), Goldman Sachs (GS), State Street (STT)
-            **🇮🇳 Indian Stocks:**
+
+            **Indian Stocks:**
             - Reliance (RELIANCE.NSE), TCS (TCS.NSE), Infosys (INFY.NSE)
             - HDFC Bank (HDFCBANK.NSE), Wipro (WIPRO.NSE), ITC (ITC.NSE)
             - SBI (SBIN.NSE), Kotak Bank (KOTAKBANK.NSE), Bharti Airtel (BHARTIARTL.NSE)
