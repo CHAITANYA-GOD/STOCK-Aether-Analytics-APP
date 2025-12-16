@@ -130,7 +130,7 @@ warnings.filterwarnings('ignore')
 
 # --- Page configuration ---
 st.set_page_config(
-    page_title="Aether Analytics",
+    page_title="Trade Vison",
     page_icon="brain.png",
     layout="wide",
     initial_sidebar_state="expanded"
